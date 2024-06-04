@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amor Sob as Estrelas</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #191919;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+  
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: auto;
+    padding: 50px;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #ffffff;
+  }
+  
+  p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #ffffff;
+  }
+  
+  .options {
+    display: flex;
+    justify-content: center;
+  }
+  
+  button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    padding: 15px 30px;
+    margin: 0 20px;
+    background-color: #ff4d4d;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #ff3333;
+  }
+  
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+  }
+  
+  .popup h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #000000;
+  }
+  
+  .popup button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #ff4d4d;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .popup button:hover {
+    background-color: #ff3333;
+  }
+</style>
+</head>
+<body>
+<canvas id="starsCanvas"></canvas>
+<div class="container">
+  <h1>Sob as Estrelas do Nosso Amor</h1>
+  <p>
+    Meu querido, em apenas dois meses, nossos momentos juntos floresceram como um jardim encantado. Sua compreensão me cativa. A ausência de suas palavras é como um jardim sem sol, e seus braços são meu refúgio seguro. Cada beijo é uma promessa de um futuro cheio de amor e paixão. Você me permite continuar a perder-me na profundidade de seus olhos e a conquistar seu coração a cada novo dia?
+  </p>
+  <div class="options">
+    <button onclick="showPopup('yes')">Sim</button>
+    <button onclick="showPopup('no')">Não</button>
+  </div>
+</div>
+<div class="popup" id="popupNo">
+  <h2>Tem certeza?</h2>
+  <button onclick="hidePopup()">Não</button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+  const canvas = document.getElementById('starsCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const stars = [];
+  
+  for (let i = 0; i < 1000; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 2,
+      color: 'white'
+    });
+  }
+  
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < stars.length; i++) {
+      const star = stars[i];
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = star.color;
+      ctx.fill();
+    }
+  }
+  
+  function showPopup(response) {
+    if (response === 'no') {
+      $('#popupNo').show();
+    } else {
+      window.location.href = 'https://t.me/nghtmer';
+    }
+  }
+  
+  function hidePopup() {
+    $('#popupNo').hide();
+  }
+  
+  $(document).ready(() => {
+    drawStars();
+  });
+</script>
+</body>
+</html>
